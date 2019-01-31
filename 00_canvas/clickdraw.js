@@ -18,6 +18,7 @@ var update = function(e){
 // draw either circles or rectangles
 // random size, random color
 var draw = function(e){
+    e.preventDefault();
     var xcor = e.offsetX;
     var ycor = e.offsetY;
     var colors = ['red', 'blue', 'green', 'yellow', 'black', 'purple', 'turquoise', 'orange'];
