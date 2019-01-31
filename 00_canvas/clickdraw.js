@@ -18,8 +18,8 @@ var update = function(e){
 // draw either circles or rectangles
 // random size, random color
 var draw = function(e){
-    var xcor = e.layerX;
-    var ycor = e.layerY;
+    var xcor = e.offsetX;
+    var ycor = e.offsetY;
     var colors = ['red', 'blue', 'green', 'yellow', 'black', 'purple', 'turquoise', 'orange'];
     var random = colors[Math.floor(Math.random() * colors.length)];
     ctx.fillStyle = random;
@@ -30,7 +30,6 @@ var draw = function(e){
     else{
 	// circles have random radii
 	var r = Math.random()*15 + 10;
-	//ctx.fillStyle = 'black';
 	ctx.beginPath();
 	ctx.ellipse(xcor, ycor, r, r, Math.PI / 4, 0, 2 * Math.PI);
 	ctx.fill();
