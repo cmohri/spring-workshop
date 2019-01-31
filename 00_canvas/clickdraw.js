@@ -24,7 +24,7 @@ var draw = function(e){
     var random = colors[Math.floor(Math.random() * colors.length)];
     ctx.fillStyle = random;
     if (ctr % 2 == 0){
-	// rectangles have random coordinates
+	// rectangles have random dimensions
 	ctx.fillRect(xcor, ycor, Math.random()*15 + 10, Math.random()*15 + 10);
     }
     else{
