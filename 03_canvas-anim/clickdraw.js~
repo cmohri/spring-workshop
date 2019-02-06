@@ -1,0 +1,28 @@
+var c = document.getElementById("slate");
+var ctx = c.getContext("2d");
+var dotButton = document.getElementById("begin");
+var stopButton = document.getElementById("stop");
+ctx.fillStyle = "#00ffff";
+
+
+
+var radius = 0;
+var growing = true;
+
+
+var drawDot = function(e){
+    ctx.beginPath();
+    
+    ctx.arc(c.width / 2, c.height / 2, 10, 0, 2* Math.PI);
+    ctx.stroke();
+    ctx.fill();
+};
+
+
+
+var stop = function(e){
+};
+
+dotButton.addEventListener("click", drawDot);
+stopButton.addEventListener("click", stop);
+
