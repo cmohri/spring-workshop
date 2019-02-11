@@ -26,6 +26,7 @@ var clear = function(e){
 
 // Draws the circle
 var drawDot = function(e){
+    window.cancelAnimationFrame(id);
     clear() // Clears the canvas so circles don't overlap
     
     // Determines whether the circle should grow or shrink
@@ -61,18 +62,10 @@ var stop = function(e){
 };
 
 dotButton.addEventListener("click", function (e){
-    // Checks if there is an animation in progress, if there is prevent another
-    if (id){
-	console.log("Animation already in progress") ;
-	e.preventDefault()
-    }
-    else{
-	console.log("Start an animation")
-	drawDot()
-    } } );
+    drawDot();
+});
+			   
 stopButton.addEventListener("click", stop);
-
-
 
 
 var dvdLogoSetup = function() {
