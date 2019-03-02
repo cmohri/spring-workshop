@@ -6,7 +6,7 @@
 
 import pymongo
 
-SERVER_ADDR = "167.99.1.24"
+SERVER_ADDR = "104.248.58.23"
 connection = pymongo.MongoClient(SERVER_ADDR)
 db = connection.test
 collection = db['primer-dataset']
