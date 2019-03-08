@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> boo </title>
+
+  </head>
+
+  <body>
+    <!--Server = {{server}}-->
+    <form action = "/search" method = "POST">
+      What information do you want to find? <br>
+      <select name = "option">
+        <option value="surname">surname</option>
+        <option value="year">year</option>
+        <option value="name">First Name</option>
+        <option value="num"># of winners</option>
+      </select>
+      <input type = "text" name = "input" >
+      <input type = "submit" name = "submit" >
+    </form>
+    {{results}}
+    <hr>
+
+  </body>
+</html>
