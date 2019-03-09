@@ -11,7 +11,7 @@ import json
 import os
 app = Flask(__name__) #create instance of class flask
 
-# app.secret_key = os.urandom(32)
+app.secret_key = os.urandom(32)
 
 '''
 Nobel Prize Database
@@ -28,7 +28,7 @@ collection = db.nobel
 
 
 
-collection.drop()
+db.collection.drop()
 with open("prizes.json") as f:
     file_data = json.load(f)
 
@@ -48,13 +48,13 @@ def main():
             SERVER_ADDR = server
             connection = pymongo.MongoClient(SERVER_ADDR)
             db = connection["Forest"]
-            collection = db.nobel
+            collection = db.laureates
 
-            collection.drop()
+            db.collection.drop()
             with open("prizes.json") as f:
                 file_data = json.load(f)
             collection.insert(file_data["prize"])
-        return render_template('base.html')
+        return render_template(redirect(url_for('search')))
 
     #except:
     #    return redirect('/')
@@ -71,49 +71,49 @@ def search():
         print(type)
         print(input)
         if type == 'surname':
-            results = surname(input)
+            result = surname(input)
         if type == 'year':
-            results = year(input)
+            result = year(input)
         if type == 'name':
-            results = first_name(input)
+            result = first_name(input)
         if type == 'num':
-            results = num_winners(input)
-        return render_template('base.html', results = results)
+            result = num_winners(input)
+        return render_template('base.html', results = result)
 
     #except:
     #    return redirect('/search')
 
 # get motivation by year
 def year(year):
-    s = "In year: " + year + " <br />"
+    s = "In year: " + year + "<br>"
     for i in (collection.find({"year":year})):
-        s += "Motivation: " + i["laureates"][0]["motivation"][1:-1] + " <br />"
+        s += "Motivation: " + i["laureates"][0]["motivation"][1:-1] + "<br>"
     return s
 
 # get year and category for surname
 def surname(surname):
-    s = "Nobel prizes awarded to last name: " + surname + " <br />"
+    s = "Nobel prizes awarded to last name: " + surname + "<br>"
     for i in collection.find({"laureates.surname": surname}):
-        s += "year: " + i["year"] + " <br />"
-        s += "category: " + i["category"] + " <br />"
+        s += "year: " + i["year"] + "<br>"
+        s += "category: " + i["category"] + "<br>"
     return s
 
 # nobel prizes by number of people awarded
 def num_winners(num):
-    s = "Categories and years for which the number of people awarded was: " + num + " <br />"
+    s = "Categories and years for which the number of people awarded was: " + num + "<br>"
     for i in collection.find({"laureates.share": num}):
-        s += "year: " + i["year"] + " <br />"
-        s += "category: " + i["category"] + " <br />"
+        s += "year: " + i["year"] + "<br>"
+        s += "category: " + i["category"] + "<br>"
     return s
 
 # nobel prizes by first name
 def first_name(firstname):
-    s = "Nobel prizes awarded to people with the first name: " + firstname + " <br />"
+    s = "Nobel prizes awarded to people with the first name: " + firstname + "<br>"
     for i in collection.find({"laureates.firstname": firstname}):
         surname = i["laureates"][0]["surname"]
         f = i["laureates"][0]["firstname"]
         year = (i["year"])
-        s += f + " " + surname + " in " + year + " <br />"
+        s += f + " " + surname + " in " + year + "<br>"
     return s
 
 
