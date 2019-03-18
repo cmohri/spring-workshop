@@ -22,6 +22,7 @@ var draw = function(e){
     pic.appendChild(c);    
     var l = document.createElementNS("http://www.w3.org/2000/svg", "line");    
     if (x1 & x2){
+	console.log("Draw line");
 	l.setAttribute("x1", x1);
 	l.setAttribute("y1", y1);
 	l.setAttribute("x2", x2);
