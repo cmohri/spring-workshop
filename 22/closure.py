@@ -35,7 +35,7 @@ def make_counter():
     def access():
         nonlocal x
         return x
-    return( inc, access)
+    return inc, access
     
 ctr1, acc1 = make_counter()
 
