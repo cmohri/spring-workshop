@@ -42,16 +42,20 @@ def memoize(f):
         if x in memo:
             return memo[x]
         else:
-            
-            memo[val] = f(x)
-            return val
+            memo[x] = f(x)
+            return memo[x]
     return helper
         
 
 def fib(n):
-    
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n-1) + fib(n-2)
+
+
 
 m_fib = memoize(fib)
 print(m_fib(40))
-#print(m_fib(3))
 
